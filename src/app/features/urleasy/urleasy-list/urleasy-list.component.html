@@ -1,0 +1,54 @@
+<div class="khz-container">
+    <div class="left-content">
+        <div class="filter-container">
+            <mat-form-field>
+                <input matInput placeholder="Override list filter" [formControl]="searchField">
+            </mat-form-field>
+        </div>
+        <div class="scroll-container">
+            <div class="list-scrollable">
+                <ul class='main-list'>
+                    <li *ngFor="let ratedUrl of (overrideList | async)">
+                        <khz-rating-card (previewSite)="setIframeUrl($event)" [_rating]="ratedUrl"></khz-rating-card>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="right-content">
+        <div class="content-header">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title> {{displayTitle}}</mat-panel-title>
+                    <mat-panel-description>Update site override settings</mat-panel-description>
+                </mat-expansion-panel-header>
+                <form>
+                    <mat-form-field>
+                        <input matInput placeholder="user">
+                    </mat-form-field>
+                    <div class="drop-spacer">
+                        <mat-select placeholder="Category">
+                            <mat-option *ngFor="let item of category"  [value]="item.val">{{item.text}}</mat-option>
+                        </mat-select>
+                        <mat-select placeholder="Store As...">
+                            <mat-option *ngFor="let storeIt of storeItAs" [value]="storeIt.val">{{storeIt.text}}</mat-option>
+                        </mat-select>
+                    </div>
+                    <div class="drop-actions">
+                        <button color="warn" mat-button>Cancel</button>
+                        <div class="flex-spacer"></div>
+                        <button mat-button>Delete</button>
+                        <button color="primary" mat-raised-button>Override</button>
+                    </div>
+                </form>
+            </mat-expansion-panel>
+        </div>
+        <div class="content-body">
+            <iframe [attr.src]="siteUrl"></iframe>
+        </div>
+        <div class="content-footer">
+            <button color="warn" mat-raised-button>DELETE</button>
+            <button color="primary" mat-raised-button>OVERRIDE</button>
+        </div>       
+    </div>    
+</div>

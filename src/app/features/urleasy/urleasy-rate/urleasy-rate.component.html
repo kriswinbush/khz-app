@@ -1,0 +1,52 @@
+<div class="khz-container">
+    <div class="left-container">
+        <form class="ratings-form" [formGroup]="rateForm">
+        <div class="left-header">
+            <mat-select class="ratings-select" placeholder="Environment" formControlName="speakeasyEnvironment">
+                <mat-option *ngFor='let env of speakeasyEnv' [value]="env.url">{{env.text}}</mat-option>
+            </mat-select>
+        </div>
+        <div class="left-content">
+            <div class="scrollable-content">
+                <div formArrayName="ratedCollection">
+                    <div *ngFor="let rated of ratedCollection.controls; let idx = index;" [formGroupName]="idx">
+                        <mat-card> 
+                            <mat-card-header>
+                                <mat-card-title>Website:</mat-card-title>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <mat-form-field class="psn-ratings-field">
+                                    <input matInput placeholder="Enter a Website url to be rated..." formControlName="url">
+                                </mat-form-field>
+                            </mat-card-content>
+                        </mat-card>                      
+                    </div>
+                </div>                 
+            </div>
+        </div>
+        <div class="left-footer">
+            <div class="footer-btn-container">
+                <button mat-button (click)="addRateItem()">Add Url</button>
+                <div class="flex-spacer"></div>
+                <button color="primary" mat-raised-button (click)="reqRatedUrls()">Rate</button>
+            </div>
+        </div>
+    </form>
+    
+    </div>
+    <div class="right-container">
+            <p>Form value: {{ rateForm.value | json }}</p>
+        <div class="right-content">
+            <div class="scrollable-content">
+                <div *ngIf="singleRate">
+                    <khz-rating-card [_rating]="reqRates"></khz-rating-card>
+                </div>
+                <ng-template #multiRate>
+                    <div *ngFor="let rateItem of reqRates"> 
+                        <khz-rating-card [_rating]="rateItem"></khz-rating-card>
+                    </div>
+                </ng-template>
+            </div>     
+        </div>
+    </div>
+</div>

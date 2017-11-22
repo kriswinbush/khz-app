@@ -1,0 +1,25 @@
+<div class="khz-container">
+    <div class="khz-content">
+        <mat-card>
+
+            <mat-card-header>
+                    <mat-card-title-group>
+                            <mat-icon>security</mat-icon>
+                            <mat-card-title>{{banner?.name}}</mat-card-title>
+                            <mat-card-subtitle>Version: {{banner?.version}}</mat-card-subtitle>           
+                    </mat-card-title-group>
+            </mat-card-header>
+            
+            <mat-card-content>
+                    <mat-card-subtitle>Host: {{banner?.host}}</mat-card-subtitle>
+                    <mat-card-subtitle>Build Number: {{banner?.build}}</mat-card-subtitle>
+            </mat-card-content>
+
+            <mat-card-footer>
+                <div>Uptime: {{banner?.uptime}}</div>
+                <div>Start Time: {{banner?.startTime}}</div>
+            </mat-card-footer>
+
+        </mat-card>
+    </div>
+</div>

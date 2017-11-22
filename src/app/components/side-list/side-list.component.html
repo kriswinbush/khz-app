@@ -1,0 +1,45 @@
+<div class="psn-side-list-container" [@sideListState]="sideList">
+    <div class="list-content-container">
+        <mat-nav-list>
+            <mat-list-item>
+               <a matLine href="...">Speakeasy</a>
+               <button mat-icon-button>
+                  <mat-icon>track_changes</mat-icon>
+               </button>
+            </mat-list-item>
+            <mat-list-item>
+                <a matLine href="...">Dictionary</a>
+                <button mat-icon-button>
+                   <mat-icon>query_builder</mat-icon>
+                </button>
+             </mat-list-item>
+             <mat-list-item>
+                <a matLine href="...">Safety</a>
+                <button mat-icon-button>
+                   <mat-icon>pets</mat-icon>
+                </button>
+             </mat-list-item>
+             <mat-list-item>
+                <a matLine href="...">Policies</a>
+                <button mat-icon-button>
+                   <mat-icon>lightbulb_outline</mat-icon>
+                </button>
+             </mat-list-item>
+             <mat-list-item>
+                <a matLine href="...">Procedures</a>
+                <button mat-icon-button>
+                   <mat-icon>event_seat</mat-icon>
+                </button>
+             </mat-list-item>
+             <mat-list-item>
+                <a matLine href="...">FAQ</a>
+                <button mat-icon-button>
+                   <mat-icon>fingerprint</mat-icon>
+                </button>
+             </mat-list-item>
+          </mat-nav-list>
+    </div>
+    <button mat-raised-button (click)='clickHandler()'>close side list</button>
+    
+</div>
+

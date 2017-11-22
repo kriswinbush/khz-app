@@ -1,0 +1,74 @@
+* { box-sizing: border-box; }
+
+.khz-container {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    .left-container {
+        position: relative;
+        width: 100%;
+        /* Flex container */
+        .ratings-form {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            /* 1 flex item */
+            .left-header {
+                padding: 10px;
+                .ratings-select {
+                    width: 100%;
+                }                        
+            }
+            /* 2 flex item */
+            .left-content {
+                position: relative;
+                overflow-x: hidden;
+                overflow-y: auto;
+                height: calc(100% - 186px);
+                .scrollable-content {
+                    position: absolute;
+                    width: 100%;
+                    border-top: 2px solid rgba(126,126,127,0.3);
+                    padding: 10px;
+                    mat-card {
+                        margin: 10px 0;
+                    }
+                }
+            }
+            /* 3 flex item */
+            .left-footer {
+                background-color: rgba(255,255,255,1.0);
+                position: absolute; /* fixed for full width bottom button container */
+                bottom: 65px;
+                width: 100%;
+                padding: 10px;
+                .footer-btn-container {
+                    display:flex;
+                    height: 35px;
+                    button {
+                        flex: 1 1 auto;
+                    }
+                }
+            }
+        }
+    }
+
+    .right-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+        padding-bottom: 64px;
+        .right-content {
+            overflow-x: hidden;
+            overflow-y: auto;
+            padding: -10px;
+            position: relative;
+        }
+    }
+}
+.flex-spacer {
+    flex: 1 1 auto;
+}

@@ -1,0 +1,38 @@
+<div class="rating-card-container">
+    <mat-card>
+        <mat-card-content>
+            <div class="rated-site-card-container">
+                <div class="rated-site-header">
+                    <div [ngClass]="setThreatLevel()" class="psn-icon-badge">
+                        <span [ngClass]="setRateLevel()">
+                            <mat-icon *ngIf="rating.status == 'UNKNOWN'">error_outline</mat-icon>
+                            <mat-icon *ngIf="rating.status == 'ERROR'">error</mat-icon>
+                            <mat-icon *ngIf="rating.status == 'RATED'">check_circle</mat-icon>
+                        </span>
+                    </div>
+
+                    <div class="flex-spacer"></div>
+                    <span class="rated-site-title">{{rating.url}}</span>
+                    <div class="flex-spacer"></div>
+                    <div [ngClass]="setThreatLevel()" class="icon-badge" [attr.data-level]="threatLevel" >
+                        <mat-icon id="sec-ico">security</mat-icon>
+                    </div>
+                </div>   
+                <div class="rated-site-card-body">
+                    <div class="rated-site-link">
+                        <button color="primary" mat-raised-button (click)="previewUrl(rating.url)">Override Rating</button>
+                    </div>
+                    <div class="rated-site-categories" *ngIf="!rating.category">
+                        <span>Categories:</span>
+                        <!-- <mat-icon>games</mat-icon> -->
+                        <div>{{parsedCategory}}</div>
+                        <!-- <span class="flag-icon flag-icon-gr flag-icon-squared"></span> -->
+                        <div>{{parsedCountry}}</div>
+                        <div>{{parsedSecondaryCat}}</div>
+                        <div *ngIf="_parsedSecondaryCat">{{(parsedSecondaryCountry | async)?.category}}</div>
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

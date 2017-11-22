@@ -1,0 +1,96 @@
+*{ box-sizing: border-box; }
+
+.khz-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100vw;
+    height: calc(100% - 0px);
+    .left-content {
+        box-shadow: 2px 0px 10px rgba(0, 0, 0, .6);
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        .filter-container {
+            padding: 10px 10px;
+            mat-form-field {
+                box-sizing: border-box;
+                width: 100%;
+                input {
+                    width: 100%;
+                }
+            }
+        }
+
+        .scroll-container { 
+            position: relative;
+            width: 100%;
+            height: calc(100% - 254px);
+            .list-scrollable {
+                padding: 10px 10px;
+                width: inherit;
+                position: absolute;
+                height: 100%;
+                overflow-x: hidden;
+                overflow-y: auto;
+                .main-list {
+                    width:100%;
+                    margin:0;
+                    padding:0;
+                    list-style-type: none;
+                }
+            }
+        } 
+    }
+
+    .right-content {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        font-size:25px;
+        .content-header {
+            padding: 10px 10px;
+            width: 100%;
+            display: flex;
+            position: relative;
+            mat-expansion-panel {
+                width: 100%;
+                mat-form-field {
+                width: 100%;
+                }
+                .drop-spacer {
+                    display: flex;
+                    mat-select {
+                        width: 80%;
+                    }
+                }
+                .drop-actions {
+                    display: flex;
+                    padding: 10px 10px;
+                }
+            }        
+        }
+
+        .content-body {
+            height: calc(100vh - 0px);
+            iframe {
+                margin:0;
+                padding:0;
+                border: none;
+                width: 100%;
+                height: calc(100% - 0px);
+            }
+        }
+
+        .content-footer {
+            background-color: rgba(255,255,255,1.0);
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    }
+}
+
+.flex-spacer {
+    flex: 1 1 auto;
+}

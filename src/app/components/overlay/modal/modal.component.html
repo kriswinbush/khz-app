@@ -1,0 +1,38 @@
+<div class="psn-modal-container">
+    <mat-icon (click)="closeModal()">close</mat-icon>
+    <mat-card class="centered-content-container">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>www.ign.com</mat-card-title>
+            <mat-card-subtitle>www.ign.com/path/to/resource?q=098766</mat-card-subtitle>
+          </mat-card-header>
+        <mat-card-content class="psn-card-content">
+            <div class="psn-preview-modal">
+                <iframe src="https://www.ign.com"></iframe>
+                <form class="psn-rating-form" [formGroup]="overrideForm">
+                    <div>
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="User Name" formControlName="uName">
+                        </mat-form-field>
+                    </div>
+                    <div class="flex-spacer"></div>
+                    <div class="example-full-width">
+                        <mat-select placeholder="Category" formControlName="category">
+                            <mat-option *ngFor="let category of categories" [value]="category">{{category}}</mat-option>
+                        </mat-select>
+                    </div>
+                    
+                    <div>
+                        <mat-select placeholder="Store As..." formControlName="storedas">
+                            <mat-option *ngFor="let type of storedAs" [value]="type" >{{type}}</mat-option>
+                        </mat-select>
+                    </div>
+                </form> 
+                <p>Form value: {{ overrideForm.value | json }}</p>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button color='accent' mat-raised-button (click)="overrideUrl()">OVERRIDE</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

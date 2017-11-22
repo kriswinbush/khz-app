@@ -1,0 +1,51 @@
+<div class="rating-card-container">
+    <mat-card>
+        <mat-card-content>
+            <div class="rated-site-card-container">
+                <div class="rated-site-header">
+                    <div [ngClass]="setThreatLevel()" class="psn-icon-badge">
+                        <div  *ngIf="rating?.category; else elseRating">
+                            <div [ngSwitch]="rating.category">
+                                <ng-template [ngSwitchCase]="RATED">
+                                    <mat-icon id="rate-icon">star_rate</mat-icon>
+                                </ng-template>
+                                <ng-template [ngSwitchCase]="UNKNOWN">
+                                    <mat-icon>help</mat-icon>
+                                 </ng-template>
+                                <ng-template [ngSwitchCase]="ERROR">
+                                    <mat-icon>error</mat-icon>
+                                </ng-template>
+                            </div>
+                        </div>
+                        <ng-template #elseRating>
+                            <span [ngClass]="setRateLevel()">
+                                <mat-icon *ngIf="rating.status == 'UNKNOWN'">error_outline</mat-icon>
+                                <mat-icon *ngIf="rating.status == 'ERROR'">error</mat-icon>
+                                <mat-icon *ngIf="rating.status == 'RATED'">check_circle</mat-icon>
+                            </span>
+                            
+                        </ng-template>
+                    </div>
+
+                    <div class="flex-spacer"></div>
+                    <span class="rated-site-title">{{rating.url}}</span>
+                    <div class="flex-spacer"></div>
+                    <div [ngClass]="setThreatLevel()" class="psn-icon-badge" [attr.data-level]="threatLevel" >
+                        <mat-icon id="sec-ico">security</mat-icon>
+                    </div>
+                </div>   
+                <div class="rated-site-card-body">
+                    <div class="rated-site-link">
+                        <button color="primary" mat-raised-button (click)="previewUrl(rating.url)">Preview</button>
+                    </div>
+                    <div class="rated-site-categories" *ngIf="!rating.category">
+                        <span>Categories:</span>
+                        <mat-icon>games</mat-icon>
+                        <span class="flag-icon flag-icon-gr flag-icon-squared"></span>
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
+

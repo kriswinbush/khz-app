@@ -1,0 +1,27 @@
+<khz-sidebar [showSidebar]="showLeftSidebar"></khz-sidebar>
+
+<div class="khz-container">
+
+  <div class="khz-content">
+
+    <mat-toolbar color="primary">
+      <button (click)="sidebarToggle()" mat-icon-button>
+          <mat-icon>menu</mat-icon>
+      </button>
+      <button mat-button color='accent' routerLink="/urleasy/judge" routerLinkActive="active">Judge</button> 
+      <button mat-button color='accent' routerLink="/urleasy/overrule" routerLinkActive="active">Overrule</button>
+      <span class="flex-spacer"></span>
+      <button (click)="sideListToggle()" mat-icon-button>
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <div class='outlet-container'>
+        <router-outlet></router-outlet>
+    </div>
+
+  </div>
+  <khz-overlay [comps]="comps"></khz-overlay>
+</div>
+
+<khz-side-list></khz-side-list>

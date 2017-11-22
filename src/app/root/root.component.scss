@@ -1,0 +1,15 @@
+.khz-container {
+  width:100vw;
+  height: 100vh;
+  overflow: hidden;
+  .khz-content {
+    .outlet-container {
+      width: 100%;
+      height: inherit;
+    }
+  }   
+}
+
+.flex-spacer {
+  flex: 1 1 auto;
+}
