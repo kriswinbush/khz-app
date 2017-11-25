@@ -8,7 +8,7 @@ import { UrleasyBannerComponent } from './urleasy-banner/urleasy-banner.componen
 import { UrleasyContainerComponent } from './urleasy-container/urleasy-container.component';
 import { UrleasyOverrideComponent } from './urleasy-override/urleasy-override.component';
 
-const urleasyRoutes: Routes = [
+const routes: Routes = [
   { path:'', component: UrleasyContainerComponent, children: [
     {path: '', component: UrleasyBannerComponent},
     {path: 'overrule', component: UrleasyListComponent},
@@ -20,7 +20,7 @@ const urleasyRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(urleasyRoutes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 

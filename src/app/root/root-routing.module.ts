@@ -4,16 +4,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from '../components/authentication/login/login.component'
 import { MainContentComponent } from  '../components/main-content/main-content.component';
 
-const rootRoutes: Routes = [
-  {path: '', redirectTo: '/urleasy', pathMatch: 'full'},
+const routes: Routes = [
+  {path: '', redirectTo: '/products', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'main', component: MainContentComponent},
-  {path: 'urleasy', loadChildren: 'app/features/urleasy/urleasy.module#UrleasyModule'}
+  {path: 'urleasy', loadChildren: 'app/features/urleasy/urleasy.module#UrleasyModule'},
+  {path: 'products', loadChildren: 'app/features/products/products.module#ProductsModule'}
 ]
 
 @NgModule({
-  imports: [RouterModule.forRoot(rootRoutes)],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 
-export class AppRoutingModule { }
+export class RootRoutingModule { }

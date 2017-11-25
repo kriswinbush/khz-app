@@ -1,0 +1,29 @@
+* { box-sizing: border-box;}
+
+.container {
+  width: 100%;
+  
+  .content {
+    height: calc(100% - 67px);
+    .item-list {
+      width: 100%;
+      overflow-y: scroll;
+      height: calc(100vh - 100px);
+      ul {
+        margin: 0px;
+        padding: 0px;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        align-content: space-between;
+        list-style: none;
+        li {
+          padding: 10px;
+          .catalog-card {
+            width: 300px;
+          }
+        }
+      }
+    }
+  }
+}

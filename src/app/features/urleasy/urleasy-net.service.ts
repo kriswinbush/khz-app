@@ -92,7 +92,7 @@ export class UrleasyNetService {
       .map(res => res.json())
   }
 
-  healthCheck():Observable<any> {
+  healthCheck():Observable<IHealthCheck> {
     //GET
     let myHeaders = new Headers({
       'Content-type': 'application/json',

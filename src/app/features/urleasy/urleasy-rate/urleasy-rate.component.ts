@@ -5,7 +5,6 @@ import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { IRate } from '../../../core/core.interface';
-import 'rxjs/Rx';
 
 @Component({
   selector: 'khz-urleasy-rate',

@@ -10,12 +10,15 @@
       </button>
       <button mat-button color='accent' routerLink="/urleasy/judge" routerLinkActive="active">Judge</button> 
       <button mat-button color='accent' routerLink="/urleasy/overrule" routerLinkActive="active">Overrule</button>
+      <button mat-button color='accent' routerLink="/products" routerLinkActive="active">Products</button>
       <span class="flex-spacer"></span>
+      <span class='basket' [attr.basketcount]="(catalogStore.basket | async)?.size">
+        <button mat-button color='accent' routerLink="products/cart" routerLinkActive="active">View Cart</button>
+      </span>
       <button (click)="sideListToggle()" mat-icon-button>
         <mat-icon>menu</mat-icon>
       </button>
     </mat-toolbar>
-
     <div class='outlet-container'>
         <router-outlet></router-outlet>
     </div>
