@@ -29,6 +29,7 @@ export interface IRated {
   ratedUrl?:string;
   categories?:string[];
   rating?: number;
+  category?: any;
 }
 
 export interface IRate extends ISetCfg {

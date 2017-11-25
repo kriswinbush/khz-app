@@ -3,9 +3,13 @@ import { UrleasyNetService } from '../urleasy-net.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Http } from '@angular/http';
+//import * as Rx from 'rxjs/Rx';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/withLatestFrom';
 import { Observable } from 'rxjs/Observable';
 import { ISetCfg } from '../../../core/core.interface';
-import 'rxjs/Rx';
+
 
 @Component({
   selector: 'khz-urleasy-list',

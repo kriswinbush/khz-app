@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UrleasyNetService } from '../urleasy-net.service';
 import { Http } from '@angular/http';
-import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 import { IHealthCheck } from '../../../core/core.interface';
 
@@ -12,7 +11,7 @@ import { IHealthCheck } from '../../../core/core.interface';
 })
 
 export class UrleasyBannerComponent extends UrleasyNetService implements OnInit {
-  banner:Observable<IHealthCheck>;
+  banner:IHealthCheck;
   
   constructor(public http:Http) {
     super(http);
@@ -20,7 +19,6 @@ export class UrleasyBannerComponent extends UrleasyNetService implements OnInit 
 
   ngOnInit() {
     this.healthCheck()
-      .subscribe( (data):Observable<IHealthCheck> => this.banner = data)
+      .subscribe(data => this.banner = data)
   }
-
 }
