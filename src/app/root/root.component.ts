@@ -17,6 +17,7 @@ export class RootComponent implements OnInit {
   showLeftSidebar;
   /* showOverlay = true; */
   constructor(public catalogStore:CatalogStore, public store:Store<SideList>,/*  public coreOverlayService: CoreOverlayService,  */) {}
+
   
   ngOnInit() {
     //this.comps = this.overlayService.getComps();
