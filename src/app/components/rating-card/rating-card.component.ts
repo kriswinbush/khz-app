@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IRated } from '../../core/core.interface';
-import { CoreOverlayService } from '../../core/core-overlay.service';
+import { OverlayService } from '../overlay/services/overlay.service';
 
 @Component({
   selector: 'khz-rating-card',
@@ -59,12 +59,8 @@ export class RatingCardComponent implements OnInit {
   @Output() previewSite = new EventEmitter();
   threatLevel;
   ratedCategory;
-  constructor(private coreOverlayService: CoreOverlayService) {}
-
-  ngOnInit() {
-    //console.log(this.rating);
-     // this.threatLevel = this.rating.rating
-  }
+  constructor(private overlayService:OverlayService) {}
+  ngOnInit() {}
   setThreatLevel() {
     this.threatLevel = this.rating.rating;
     return {safe1: this.threatLevel <= 3, unsafe4: this.threatLevel === 4, level5: this.threatLevel === 5};
@@ -73,9 +69,7 @@ export class RatingCardComponent implements OnInit {
     return {unknown: this.rating.status === 'UNKNOWN', rated: this.rating.status === 'RATED', error: this.rating.status === 'ERROR'}
   }
   previewUrl(url) {
-    let type = 'modal';
-    let state = 'OPEN';
-    this.coreOverlayService.activate({url, data:{}, type, state});
+    this.overlayService.activate({data:{url}, type: 'modal', state:'OPEN'});
   }
 }
 

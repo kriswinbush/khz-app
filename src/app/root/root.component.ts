@@ -6,7 +6,7 @@ import { SideList } from '../components/side-list/side-list.model';
 import { ISideList } from '../components/side-list/i-side-list';
 import { Observable } from 'rxjs/Observable';
 import { ToggleDrawer } from '../components/side-list/side-list.actions';
-import { CatalogStore } from '../features/products/store/catalog-store.service';
+/* import { CatalogStore } from '../features/products/store/catalog-store.service'; */
 @Component({
   selector: 'lockr-root',
   templateUrl: './root.component.html',
@@ -15,8 +15,9 @@ import { CatalogStore } from '../features/products/store/catalog-store.service';
 export class RootComponent implements OnInit {
   comps: CompItem[];
   showLeftSidebar;
+  cartSizeValue:number = 0;
   /* showOverlay = true; */
-  constructor(public catalogStore:CatalogStore, public store:Store<SideList>,/*  public coreOverlayService: CoreOverlayService,  */) {}
+  constructor(/* public catalogStore:CatalogStore, */ public store:Store<SideList>,/*  public coreOverlayService: CoreOverlayService,  */) {}
 
   
   ngOnInit() {
@@ -28,6 +29,10 @@ export class RootComponent implements OnInit {
   }
   sideListToggle() {
     this.store.dispatch(new ToggleDrawer());
+  }
+  cartSize(val) {
+    this.cartSizeValue = val.value;
+    console.log(val)
   }
   /* overlayHandler() {
     this.showOverlay = this.showOverlay ? false : true;

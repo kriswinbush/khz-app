@@ -17,8 +17,18 @@ export class CatalogStore {
   constructor(private catalogHttp:CatalogHttpService) {
     this.getItems();
   }
-  addToBasket(item) {
-    //should just push ID of item and in cart pull all Items by ID
+  removeFromBasket(deleteItem) {
+    return new Promise((res,rej) => {
+      let collection:List<CatalogItem> = this._basket.getValue();
+      let index = collection.findIndex(idx => idx.id === deleteItem.id);
+      this._basket.next(collection.delete(index));
+      res();
+    })
+  }
+  updateCatalog(item, qty) {
+    let catalog:List<CatalogItem> = this._catalog.getValue();
+    let index = catalog.findIndex(idx => idx.id === item.id);
+    let updateItem:CatalogItem = catalog.get(index);
     let record = new CatalogItem({
       id: item.id,
       imgUri: item.imgUri,
@@ -26,17 +36,50 @@ export class CatalogStore {
       description: item.description,
       title: item.title,
       fit: item.fit,
-      ordered: item.ordered
-    })
-    let cartItem = this._basket.getValue().push(record);
-    
-    this._basket.next(List(cartItem));
-    //console.log(this._basket)
+      ordered: item.ordered,
+      quantity: qty
+    });
+    this._catalog.next(catalog.set(index,record));
+  }
+  updateBasket(item, qty) {
 
   }
 
-  getBasketItems( ) {
-    //might be able to filter the values out of the observable
+  addToBasket(item, qty) {
+    let basket:List<CatalogItem> = this._basket.getValue();
+    let index = basket.findIndex(idx => idx.id === item.id);
+    if(index !== -1) {
+      qty = +qty + +basket.get(index).quantity;
+      let record = new CatalogItem({
+        id: item.id,
+        imgUri: item.imgUri,
+        price: item.price,
+        description: item.description,
+        title: item.title,
+        fit: item.fit,
+        ordered: true,
+        quantity: qty
+      });
+      return this._basket.next(basket.set(item.id, record))
+    } else {
+
+      let record = new CatalogItem({
+        id: item.id,
+        imgUri: item.imgUri,
+        price: item.price,
+        description: item.description,
+        title: item.title,
+        fit: item.fit,
+        ordered: true,
+        quantity: qty
+      });
+      return this._basket.next(List(basket.push(record)));
+    }
+  }
+
+  updateBasketQty(item, qty) {
+    this.removeFromBasket(item)
+      .then(() =>this.addToBasket(item, qty));
   }
 
   clearSubject() {
@@ -55,14 +98,14 @@ export class CatalogStore {
             fit: catalogItem.fit,
             description: catalogItem.description,
             title: catalogItem.title,
-            ordered: catalogItem.ordered
+            ordered: catalogItem.ordered,
+            quantity: catalogItem.quantity
           });
         });
         this._catalog.next(List(items));
       })
   }
   getItemById(id) {
-    //this.clearSubject();
     this.catalogHttp.getCatalogItem(id)
       .subscribe(response => {
         let item = response.map( (catalogItem: any):CatalogItem => {
@@ -73,10 +116,10 @@ export class CatalogStore {
             fit: catalogItem.fit,
             description: catalogItem.description,
             title: catalogItem.title,
-            ordered: catalogItem.ordered
+            ordered: catalogItem.ordered,
+            quantity: catalogItem.quantity
           });
         });
-        console.log(item)
         this._catalog.next(List(item));
       })
   }

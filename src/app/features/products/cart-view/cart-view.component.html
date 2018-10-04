@@ -1,47 +1,33 @@
+<div class="container">
 <div class="cart-total">
-  <span class="flex-spacer"></span>
-  <button mat-raised-button color="accent">Checkout</button>
   <h1>Total: {{total | currency }}</h1>
+  <span class="flex-spacer"></span>
+  <button mat-raised-button color="accent" (click)='handlePymt()'>Checkout</button>
 </div>
-<div class="example-container mat-elevation-z8">
-  <div class="example-header">
-    <mat-form-field>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-    </mat-form-field>
-  </div>
-
-  <mat-table #table [dataSource]="dataSource">
-
-    <!-- Id Column -->
-    <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
-    </ng-container>
-
-    <!-- Title Column -->
-    <ng-container matColumnDef="title">
-      <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
-    </ng-container>
-
-    <!-- Price Column -->
-    <ng-container matColumnDef="price">
-      <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.price | currency}} </mat-cell>
-    </ng-container>
-
-    <!-- Description Column -->
-    <ng-container matColumnDef="description">
-      <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
-    </ng-container>
-    <!-- Ordered Column -->
-    <ng-container matColumnDef="ordered">
-      <mat-header-cell *matHeaderCellDef> Ordered </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.ordered}} </mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
+<div class="content-table">
+  <table>
+    <tr>
+      <th>Product</th>
+      <th>Item</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>View</th>
+      <th>Remove</th>
+    </tr>
+    <tr *ngFor="let item of dataSource">
+      <td><img src="assets/images/illielogo.png" alt="SVG D.A.D logo"></td> 
+      <td><p>{{item.title}}</p></td>
+      <td><p>{{item.description}}}</p></td>
+      <td><p>{{item.price | currency}}</p></td>
+      <td>
+        <mat-form-field class="qty-table-field">
+          <input matInput type="number" placeholder="Quantity" min="1" value="{{item.quantity}}" (change)="qtyValUpdated(item,qty.value)" #qty>
+        </mat-form-field>
+      </td>
+      <td><button mat-raised-button color="primary" (click)='previewItem(item)'>View</button></td>
+      <td><button mat-raised-button color="warn" (click)="removeItem(item)">Remove</button></td>
+    </tr>
+  </table>
+</div>
 </div>

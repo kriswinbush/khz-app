@@ -1,8 +1,12 @@
-<div class="container">
+<div class="outer-container">
+  <div class="container">
     <div class="content">
           <div class="item-list">
-              <ul>
-                <li *ngFor="let item of catalogStore.catalog | async">
+              <!-- <ul>
+                <li *ngFor="let item of catalogStore.catalog | async"> -->
+                  <ul>
+                    <li>
+                
                   <mat-card class="catalog-card">
                     <mat-card-header>
                       <mat-card-title>{{item.title}}</mat-card-title>
@@ -11,25 +15,21 @@
                     <img mat-card-image src="assets/images/illielogo.png" alt="SVG D.A.D logo">
                     <mat-card-content>
                       <h2>Price: {{item.price}}</h2>
-                      <h3>{{item.id}}</h3>
+                      <h3>Quantity: {{item.quantity}}</h3>
                       <p>{{item.description}}</p>
                     </mat-card-content>
                     <mat-card-actions>
-                      <button mat-raised-button color="primary">Add to Cart</button>
-                      <button mat-raised-button routerLink="item/{{item.id}}">View Item</button>
+                      <!-- <button *ngIf="!item.ordered" mat-raised-button color="primary" (click)="add2Basket(item)">Add to Cart</button> -->
+                      <button mat-raised-button (click)="closeModal()">Close</button>
                     </mat-card-actions>
                   </mat-card>
+                      
                 </li>
               </ul>
+                <!-- </li>
+              </ul> -->
             </div>
     </div>
-    <div class="footer">
-      <button routerLink="item/12">One</button>
-      <button>Two</button>
-      <button>Three</button>
-      <button>Four</button>
-      <button>Five</button>
-      <button>Six</button>
-    </div>
-    
+    <div class="footer"></div>
   </div>
+</div>

@@ -7,7 +7,8 @@ const ItemRecord = Record({
     description: "",
     title: "",
     fit: "",
-    ordered: false
+    ordered: false,
+    quantity: 1
 });
 
 export class CatalogItem extends ItemRecord {
@@ -19,6 +20,7 @@ export class CatalogItem extends ItemRecord {
     title: string;
     fit: string;
     ordered: boolean;
+    quantity: number;
 
     constructor(props) {
         super(props);

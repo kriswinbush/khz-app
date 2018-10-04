@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { CatalogStore } from '../store/catalog-store.service'
+import { OverlayService } from '../../../components/overlay/services/overlay.service'
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'khz-products-view',
@@ -7,14 +9,22 @@ import { CatalogStore } from '../store/catalog-store.service'
   styleUrls: ['./products-view.component.scss']
 })
 export class ProductsViewComponent implements OnInit {
-  constructor(public catalogStore:CatalogStore) { 
-    this.loadData()
+  constructor(public overlayService:OverlayService, public catalogStore:CatalogStore) { 
+    this.loadData();
   }
   loadData() {
     this.catalogStore.getItems();
   }
-  add2Bakstet(item) {
-    this.catalogStore.addToBasket(item);
+  add2Basket(item, qty) {
+    this.catalogStore.addToBasket(item, qty);
   }
   ngOnInit() {}
+
+  previewItem(item) {
+    console.log(item);
+    this.overlayService.activate({data:{item}, state:'OPEN', type:'previewItem'});
+  }
+  qtyValUpdated(item,qty) {
+    this.catalogStore.updateCatalog(item, qty);
+  }
 }

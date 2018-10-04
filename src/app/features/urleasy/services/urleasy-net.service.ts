@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { environment as ENV } from '../../../environments/environment';
+import { environment as ENV } from '../../../../environments/environment';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
-import { ISetCfg, IHealthCheck } from '../../core/core.interface';
+import { ISetCfg, IHealthCheck } from '../../../core/core.interface';
 
 @Injectable()
 export class UrleasyNetService {

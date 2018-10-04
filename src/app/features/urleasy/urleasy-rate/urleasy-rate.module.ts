@@ -11,7 +11,7 @@ import { MatInputModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
 import { MatExpansionModule } from '@angular/material';
 //component
-import { RatingCardModule } from '../../../components/rating-card/rating-card.module';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -19,8 +19,7 @@ import { RatingCardModule } from '../../../components/rating-card/rating-card.mo
     MatInputModule,
     MatButtonModule,
     MatCardModule,
-    ReactiveFormsModule,
-    RatingCardModule   
+    ReactiveFormsModule  
   ],
   declarations: [UrleasyRateComponent],
   exports: [UrleasyRateComponent]

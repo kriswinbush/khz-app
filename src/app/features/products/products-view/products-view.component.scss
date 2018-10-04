@@ -21,6 +21,12 @@
           padding: 10px;
           .catalog-card {
             width: 300px;
+            .qty-product-field {
+              width: 50px;
+              input { 
+                width: 50px;
+              }
+            }
           }
         }
       }

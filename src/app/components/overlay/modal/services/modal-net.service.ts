@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
-import { environment as ENV } from '../../../../environments/environment';
+import { environment as ENV } from '../../../../../environments/environment';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
-import { ISetCfg, IHealthCheck } from '../../../core/core.interface';
+import { ISetCfg, IHealthCheck } from '../../../../core/core.interface';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class ModalNetService {
-
+    private _modalSubject = new Subject<any>();
+    modalState = this._modalSubject.asObservable();
     constructor(public http:Http) { }
 
     setOverride(config:ISetCfg) {
@@ -22,5 +24,8 @@ export class ModalNetService {
             .map(res => res.json())
         /* return Observable.of([{}])
             .map(res => res[0]) */
+    }
+    sendCloseModal(msg) {
+        this._modalSubject.next(msg);
     }
 }

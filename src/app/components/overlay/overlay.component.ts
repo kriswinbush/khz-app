@@ -1,22 +1,26 @@
-import { Component, Input, ViewChild, ComponentFactoryResolver, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, Input, Output,EventEmitter, ViewChild, ComponentFactoryResolver, AfterViewInit, OnDestroy } from '@angular/core';
 import { CompItem } from './comp-item';
 import { HostDirective } from './host/host.directive';
 import { IUtil } from '../../core/core.interface';
 import { Subscription } from 'rxjs/Subscription';
-
+import { Http } from '@angular/http';
+//Components
 import { FootswitchComponent } from './footswitch/footswitch.component';
 import { ModalComponent } from './modal/modal.component';
 import { NotifierComponent } from './notifier/notifier.component';
 import { ToasterComponent } from './toaster/toaster.component';
 import { SplashComponent } from './splash/splash.component';
-
-import { CoreOverlayService } from '../../core/core-overlay.service';
-
+//Services
+import { OverlayService } from './services/overlay.service';
+import { ModalNetService } from './modal/services/modal-net.service';
+//interfaces
+import { IOverlay } from './overlay.interface';
+//Store
+import { CatalogStore } from '../../features/products/store/catalog-store.service';
 @Component({
   selector: 'khz-overlay',
   templateUrl: './overlay.component.html',
-  styleUrls: ['./overlay.component.scss'],
-  /* entryComponents:[FootswitchComponent, ModalComponent] */
+  styleUrls: ['./overlay.component.scss']
 })
 
 export class OverlayComponent implements AfterViewInit, OnDestroy {
@@ -24,20 +28,31 @@ export class OverlayComponent implements AfterViewInit, OnDestroy {
   @Input() comps: CompItem[];
   @Input() showOverlay;
   @ViewChild(HostDirective) psnHost: HostDirective;
-  sub: any;
+  @Output() cartSize = new EventEmitter<any>();
+  modalSub: Subscription;
   interval: any;
   overlaySub:Subscription;
-  
-  constructor(private coreOverlayService: CoreOverlayService, private componentFactoryResolver: ComponentFactoryResolver) {
+  storeSub:Subscription;
+  constructor(public catalogStore:CatalogStore, public modalNetService:ModalNetService, public http:Http, private overlayService:OverlayService, private componentFactoryResolver: ComponentFactoryResolver) {
     console.log('we in here');
-    this.overlaySub = this.coreOverlayService.overlayState.subscribe( overlayMessage => {
+    this.modalSub = modalNetService.modalState.subscribe( msg => {
+      if(msg.type == "CLOSE_MODAL") {
+        this.hide();
+      }
+    })
+    this.overlaySub = this.overlayService.overlayState.subscribe( (msg:IOverlay) => {
       console.log('overlay hit')
-      if(overlayMessage.state === 'OPEN') {
-        this.activate(overlayMessage)
-      } else if(overlayMessage.state === 'CLOSE') {
+      if(msg.state === 'OPEN') {
+        this.activate(msg)
+      } else if(msg.state === 'CLOSE') {
         this.hide();
       }
       
+    })
+    this.storeSub = this.catalogStore.basket.subscribe((basketVal) => {
+      let nSize = basketVal.size;
+      console.log(basketVal.size)
+      this.cartSize.emit({value:nSize})
     })
   }
 
@@ -46,15 +61,16 @@ export class OverlayComponent implements AfterViewInit, OnDestroy {
   ngOnDestroy() {
     clearInterval(this.interval);
     this.overlaySub.unsubscribe();
+    this.modalSub.unsubscribe();
   }
 
   activate(msg) {
     this.show(msg);
   }
 
-  show(msg) {
+  show(msg:IOverlay) {
     console.log(msg);
-    let comp = this.coreOverlayService.getComp(msg);
+    let comp = this.overlayService.getComp(msg);
     //this.loadComp(comp);
     let compFactory = this.componentFactoryResolver.resolveComponentFactory(comp.component);
     let viewContainerRef = this.psnHost.viewContainerRef;
@@ -74,7 +90,7 @@ export class OverlayComponent implements AfterViewInit, OnDestroy {
 
   loadComps() {
     this.currentIdx = (this.currentIdx + 1) % this.comps.length;
-    let compItem = this.comps[0/* this.currentIdx */];
+    let compItem = this.comps[0];
 
     let compFactory = this.componentFactoryResolver.resolveComponentFactory(compItem.component);
     let viewContainerRef = this.psnHost.viewContainerRef;

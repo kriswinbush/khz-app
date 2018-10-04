@@ -19,28 +19,20 @@ import { MatExpansionModule } from '@angular/material';
 
 //modules
 import { CoreModule } from '../../core/core.module';
-import { FootswitchModule } from '../../components/overlay/footswitch/footswitch.module';
-import { ToasterModule } from '../../components/overlay/toaster/toaster.module';
-import { ModalModule } from '../../components/overlay/modal/modal.module';
-import { NotifierModule } from '../../components/overlay/notifier/notifier.module';
-import { SplashModule } from '../../components/overlay/splash/splash.module';
-import { RatingCardModule } from '../../components/rating-card/rating-card.module';
-import { OverrideCardModule } from '../../components/override-card/override-card.module';
-import { UrleasyRateModule } from './urleasy-rate/urleasy-rate.module';
-import { UrleasyListModule } from './urleasy-list/urleasy-list.module';
 
-//components
-import { UrleasyReadComponent } from './urleasy-read/urleasy-read.component';
+//Components
 import { UrleasyListComponent } from './urleasy-list/urleasy-list.component';
-import { UrleasyBannerComponent } from './urleasy-banner/urleasy-banner.component';
 import { UrleasyContainerComponent } from './urleasy-container/urleasy-container.component';
 import { FootswitchComponent } from '../../components/overlay/footswitch/footswitch.component';
+import { OverrideCardComponent } from '../../components/override-card/override-card.component';
+import { RatingCardComponent } from '../../components/rating-card/rating-card.component';
+import { UrleasyRateComponent } from './urleasy-rate/urleasy-rate.component';
+
+//Modal Components
 import { ModalComponent } from '../../components/overlay/modal/modal.component';
 import { NotifierComponent } from '../../components/overlay/notifier/notifier.component';
 import { ToasterComponent } from '../../components/overlay/toaster/toaster.component';
 import { SplashComponent } from '../../components/overlay/splash/splash.component';
-import { UrleasyOverrideComponent } from './urleasy-override/urleasy-override.component';
-
 
 @NgModule({
   imports: [
@@ -52,28 +44,21 @@ import { UrleasyOverrideComponent } from './urleasy-override/urleasy-override.co
     MatIconModule,
     MatInputModule,
     MatButtonModule,
-    RatingCardModule,
+    MatSelectModule,
     MatToolbarModule,
     MatExpansionModule,
     ReactiveFormsModule, 
     FormsModule,
-    OverrideCardModule,
-    FootswitchModule,
-    ModalModule,
-    ToasterModule,
-    NotifierModule,
-    SplashModule,
-    UrleasyRateModule,
-    UrleasyListModule, 
     UrleasyRoutingModule
   ],
   declarations: [
-    UrleasyReadComponent,
-    UrleasyBannerComponent,
     UrleasyContainerComponent,
-    UrleasyOverrideComponent
+    RatingCardComponent,
+    UrleasyListComponent,
+    OverrideCardComponent,
+    UrleasyRateComponent
   ],
-  entryComponents:[FootswitchComponent, ModalComponent, ToasterComponent, NotifierComponent, SplashComponent]
+  entryComponents:[]
   
 })
 export class UrleasyModule { }

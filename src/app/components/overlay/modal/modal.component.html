@@ -1,10 +1,11 @@
 <div class="psn-modal-container">
-    <mat-icon (click)="closeModal()">close</mat-icon>
+    
     <mat-card class="centered-content-container">
         <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
             <mat-card-title>www.ign.com</mat-card-title>
             <mat-card-subtitle>www.ign.com/path/to/resource?q=098766</mat-card-subtitle>
+            <mat-icon (click)="closeModal()">close</mat-icon>
           </mat-card-header>
         <mat-card-content class="psn-card-content">
             <div class="psn-preview-modal">
@@ -32,7 +33,7 @@
             </div>
         </mat-card-content>
         <mat-card-actions>
-            <button color='accent' mat-raised-button (click)="overrideUrl()">OVERRIDE</button>
+            <button color='accent' mat-raised-button (click)="closeModal()">OVERRIDE</button>
         </mat-card-actions>
     </mat-card>
 </div>

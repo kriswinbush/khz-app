@@ -8,11 +8,12 @@
       <button (click)="sidebarToggle()" mat-icon-button>
           <mat-icon>menu</mat-icon>
       </button>
+      <button mat-button routerLink="/" routerLinkActive="active"><mat-icon>home</mat-icon></button>
       <button mat-button color='accent' routerLink="/urleasy/judge" routerLinkActive="active">Judge</button> 
       <button mat-button color='accent' routerLink="/urleasy/overrule" routerLinkActive="active">Overrule</button>
       <button mat-button color='accent' routerLink="/products" routerLinkActive="active">Products</button>
       <span class="flex-spacer"></span>
-      <span class='basket' [attr.basketcount]="(catalogStore.basket | async)?.size">
+      <span class='basket' [attr.basketcount]="cartSizeValue">
         <button mat-button color='accent' routerLink="products/cart" routerLinkActive="active">View Cart</button>
       </span>
       <button (click)="sideListToggle()" mat-icon-button>
@@ -24,7 +25,7 @@
     </div>
 
   </div>
-  <khz-overlay [comps]="comps"></khz-overlay>
+  <khz-overlay (cartSize)="cartSize($event)" [comps]="comps"></khz-overlay>
 </div>
 
 <khz-side-list></khz-side-list>

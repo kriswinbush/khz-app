@@ -5,5 +5,6 @@
 
 export const environment = {
   urleasy: 'http://localhost:3000',
-  production: false
+  production: false,
+  stripeKey: 'pk_test_IRhGFL47sHt0wPkqbS5jOz9c'
 };

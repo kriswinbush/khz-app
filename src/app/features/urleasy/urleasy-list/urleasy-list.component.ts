@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UrleasyNetService } from '../urleasy-net.service';
+import { UrleasyNetService } from '../services/urleasy-net.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Http } from '@angular/http';

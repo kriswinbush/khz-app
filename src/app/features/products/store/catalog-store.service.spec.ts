@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { CatalogStoreService } from './catalog-store.service';
+import { CatalogStore } from './catalog-store.service';
 
 describe('CatalogStoreService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [CatalogStoreService]
+      providers: [CatalogStore]
     });
   });
 
-  it('should be created', inject([CatalogStoreService], (service: CatalogStoreService) => {
+  it('should be created', inject([CatalogStore], (service: CatalogStore) => {
     expect(service).toBeTruthy();
   }));
 });

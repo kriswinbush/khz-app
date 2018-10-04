@@ -2,7 +2,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { HttpModule, ReadyState } from '@angular/http';
 //material
 import { MatCardModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
@@ -17,37 +17,32 @@ import { NotifierComponent } from './notifier/notifier.component';
 import { SplashComponent } from './splash/splash.component';
 import { OverlayComponent } from '../overlay/overlay.component';
 import { FootswitchComponent } from './footswitch/footswitch.component';
-
+import { ItemViewComponent } from '../../features/products/item-view/item-view.component';
 //directive
 import { HostDirective } from './host/host.directive';
 
 //service
-//import { OverlayService } from './overlay.service';
-
-//module
-import { FootswitchModule } from './footswitch/footswitch.module';
-import { ToasterModule } from './toaster/toaster.module';
-import { ModalModule } from './modal/modal.module';
-import { NotifierModule } from './notifier/notifier.module';
-import { SplashModule } from './splash/splash.module';
+import { OverlayService } from './services/overlay.service';
+import { ModalNetService } from './modal/services/modal-net.service';
+import { CatalogStore } from '../../features/products/store/catalog-store.service';
+//modules
+import { ProductsModule } from '../../features/products/products.module';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    FootswitchModule,
-    ToasterModule,
-    NotifierModule,
-    SplashModule,
-    ModalModule,
     MatCardModule,
     MatSelectModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    HttpModule,
+    ProductsModule
   ],
-  declarations:[OverlayComponent, HostDirective],
+  providers: [CatalogStore, ModalNetService, OverlayService],
+  declarations:[SplashComponent, NotifierComponent, ToasterComponent, FootswitchComponent, ModalComponent, OverlayComponent, HostDirective],
   exports:[OverlayComponent],
-  entryComponents:[FootswitchComponent,  ModalComponent]
+  entryComponents:[ItemViewComponent, ModalComponent]
 })
 
 export class OverlayModule { }
